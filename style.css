@@ -1,0 +1,23 @@
+
+
+.header_style {
+    text-align: center;
+    color: white;
+    background-color: rgb(49, 108, 235);
+    padding: 15px;
+    font-size: 28px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.637);
+}
+
+.weather_search {
+    margin-left: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 5px;
+
+}
