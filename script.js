@@ -1,4 +1,4 @@
-var citySearched = document.getElementById('#citySearched')
+var citySearched = document.getElementById('citySearched')
 var searchBtn = document.querySelector('button')
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
 
@@ -29,9 +29,10 @@ function getWeatherByFetch(cityName) {
         })
 }
 
-getWeatherByFetch('Oconomowoc')
 searchBtn.addEventListener('click', function(event) {
-
+    
+    getWeatherByFetch(citySearched.value)
+    
 })
 
 
