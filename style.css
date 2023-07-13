@@ -1,4 +1,6 @@
-
+:root {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 .header_style {
     text-align: center;
@@ -6,18 +8,36 @@
     background-color: rgb(49, 108, 235);
     padding: 15px;
     font-size: 28px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
     font-weight: 600;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.637);
 }
 
-.weather_search {
+.weatherSearch {
     margin-left: 10px;
 }
 
-h2 {
+h2{
     font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
     padding: 5px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+
+}
+
+ul { 
+    display: flex;
+    margin: 5px 0 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+#dash {
+    border: 2px green solid;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
 
 }

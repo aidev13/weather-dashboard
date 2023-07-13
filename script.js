@@ -2,37 +2,56 @@ var citySearched = document.getElementById('citySearched')
 var searchBtn = document.querySelector('button')
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
 
+
+// local Storage
+
+
 function getWeatherByFetch(cityName) {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey)
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=imperial&appid=' + apiKey)
         .then(function (response) {
             return response.json()
         })
         .then(function (weatherData) {
-            var h2 = document.createElement('h2')
-            h2.innerText = cityName
-            var ul = document.createElement('ul')
-            var outdoorTemp = document.createElement('li')
-            var skyConditions = document.createElement('li')
-            var wind = document.createElement('li')
+            console.log("test")
+            var fiveDayForecast = {}
+            
+            for (var i  = 0; i < weatherData.list.length; i++) {
+                console.log(weatherData.list[i].dt_txt)
+                var hourWeatherData = weatherData.list[i]
+                var dateTime = weatherData.list[i].dt_txt
+                var day = dateTime.split(' ')[0].split('-').pop()
+                console.log(day)
+                if (!(day in fiveDayForecast)) {
+                    fiveDayForecast[day] = hourWeatherData
+                }
+            }
+            console.log(weatherData)
 
-            outdoorTemp.innerText = "Temp: " + weatherData.main.temp
-            skyConditions.innerText = "Sky Overview: " + weatherData.weather[0].main
-            wind.innerText = "Wind Conditions: " + weatherData.wind.speed + " mph"
+            var searchedCityName = document.querySelector('#dash')
+            searchedCityName.innerText = weatherData.city.name
+            document.body.appendChild(searchedCityName)
 
-            ul.appendChild(outdoorTemp)
-            ul.appendChild(skyConditions)
-            ul.appendChild(wind)
-            document.body.appendChild(h2)
-            document.body.appendChild(ul)
 
 
         })
+
+        
 }
 
+// click listener for search button
 searchBtn.addEventListener('click', function(event) {
+    var searched = citySearched.value
+    event.preventDefault()
+    getWeatherByFetch(searched)
     
-    getWeatherByFetch(citySearched.value)
-    
-})
+});
+
+// allows user to hit the'Enter' key on the keyboard
+citySearched.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      searchBtn.click();
+    }
+  });
 
 
