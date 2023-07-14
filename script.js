@@ -12,20 +12,24 @@ function getWeatherByFetch(cityName) {
             return response.json()
         })
         .then(function (weatherData) {
-            console.log("test")
             var fiveDayForecast = {}
-            
-            for (var i  = 0; i < weatherData.list.length; i++) {
-                console.log(weatherData.list[i].dt_txt)
+
+            for (var i = 0; i < weatherData.list.length; i++) {
+                if (Object.keys(fiveDayForecast).length > 4) {
+                    break
+                }
                 var hourWeatherData = weatherData.list[i]
                 var dateTime = weatherData.list[i].dt_txt
                 var day = dateTime.split(' ')[0].split('-').pop()
-                console.log(day)
                 if (!(day in fiveDayForecast)) {
                     fiveDayForecast[day] = hourWeatherData
                 }
             }
-            console.log(weatherData)
+
+            console.log(fiveDayForecast)
+            var fiveDayForecastArray = Object.values(fiveDayForecast)
+            // var fiveDayTemp = Object.values(fiveDayForecast).main.temp
+            console.log(fiveDayForecastArray)
 
             var searchedCityName = document.querySelector('#dash')
             searchedCityName.innerText = weatherData.city.name
@@ -35,23 +39,23 @@ function getWeatherByFetch(cityName) {
 
         })
 
-        
+
 }
 
 // click listener for search button
-searchBtn.addEventListener('click', function(event) {
+searchBtn.addEventListener('click', function (event) {
     var searched = citySearched.value
     event.preventDefault()
     getWeatherByFetch(searched)
-    
+
 });
 
 // allows user to hit the'Enter' key on the keyboard
-citySearched.addEventListener("keypress", function(event) {
+citySearched.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-      event.preventDefault();
-      searchBtn.click();
+        event.preventDefault();
+        searchBtn.click();
     }
-  });
+});
 
 
