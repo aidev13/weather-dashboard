@@ -3,41 +3,54 @@ var searchBtn = document.querySelector('button')
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
 
 
+
+
+
 // local Storage
 
 
-function getWeatherByFetch(cityName) {
+function getForecastByFetch(cityName) {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=imperial&appid=' + apiKey)
         .then(function (response) {
             return response.json()
         })
         .then(function (weatherData) {
-            var fiveDayForecast = {}
 
-            for (var i = 0; i < weatherData.list.length; i++) {
-                if (Object.keys(fiveDayForecast).length > 4) {
-                    break
-                }
-                var hourWeatherData = weatherData.list[i]
-                var dateTime = weatherData.list[i].dt_txt
-                var day = dateTime.split(' ')[0].split('-').pop()
-                if (!(day in fiveDayForecast)) {
-                    fiveDayForecast[day] = hourWeatherData
-                }
+            // Name of City
+            var city = weatherData.city.name
+            var cityEl = document.createElement('h3')
+            cityEl.innerText = city
+            document.body.appendChild(cityEl)
+
+            var listArray = weatherData.list
+            for (var i = 4; i < listArray.length; i += 8) {
+                // Temperature
+                var temp = listArray[i].main.temp
+                var tempEl = document.createElement('li')
+                tempEl.innerText = temp
+
+                // Date
+                var date = listArray[i].dt_txt.split(' ')[0]
+                var dateEl = document.createElement('p')
+                dateEl.innerText = date
+
+                // Icons
+                var iconNumber = listArray[i].weather[0].icon
+                var iconImg = document.createElement('img')
+                iconImg.src = 'https://openweathermap.org/img/wn/' + iconNumber + '.png'
+
+
+                document.body.appendChild(iconImg)
+                document.body.appendChild(dateEl)
+                document.body.appendChild(tempEl)
+                
             }
-
-            console.log(fiveDayForecast)
-            var fiveDayForecastArray = Object.values(fiveDayForecast)
-            // var fiveDayTemp = Object.values(fiveDayForecast).main.temp
-            console.log(fiveDayForecastArray)
-
-            var searchedCityName = document.querySelector('#dash')
-            searchedCityName.innerText = weatherData.city.name
-            document.body.appendChild(searchedCityName)
-
+            console.log(weatherData)
+            var dateAndTime = weatherData.list[0].dt_txt.split(' ')[0]
 
 
         })
+
 
 
 }
@@ -46,7 +59,7 @@ function getWeatherByFetch(cityName) {
 searchBtn.addEventListener('click', function (event) {
     var searched = citySearched.value
     event.preventDefault()
-    getWeatherByFetch(searched)
+    getForecastByFetch(searched)
 
 });
 
