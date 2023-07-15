@@ -34,6 +34,20 @@ li {
     margin-left: 7px;
 }
 
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    padding: 5px;
+}
+
+#forecastContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.card {
+    border:1px solid black;
+}
 #dash {
     border: 2px green solid;
     font-weight: bold;

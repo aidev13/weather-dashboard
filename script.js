@@ -1,13 +1,19 @@
 var citySearched = document.getElementById('citySearched')
 var searchBtn = document.querySelector('button')
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
+var forecastContainer = document.getElementById('forecastContainer')
+// function getForecastByFetch(cityName) {
+//     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey)
+//         .then(function (response) {
+//             return response.json()
+//         })
+//         .then(function (weatherData) {
 
+            
+//             console.log(weatherData)
+//         })
 
-
-
-
-// local Storage
-
+// }
 
 function getForecastByFetch(cityName) {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&units=imperial&appid=' + apiKey)
@@ -22,9 +28,11 @@ function getForecastByFetch(cityName) {
             cityEl.innerText = city
             document.body.appendChild(cityEl)
 
+            // Array to loop though API and give user elements at 12pm each day
             var listArray = weatherData.list
             for (var i = 4; i < listArray.length; i += 8) {
                 // Temperature
+
                 var temp = listArray[i].main.temp
                 var tempEl = document.createElement('li')
                 tempEl.innerText = temp
@@ -39,21 +47,25 @@ function getForecastByFetch(cityName) {
                 var iconImg = document.createElement('img')
                 iconImg.src = 'https://openweathermap.org/img/wn/' + iconNumber + '.png'
 
-
-                document.body.appendChild(iconImg)
-                document.body.appendChild(dateEl)
-                document.body.appendChild(tempEl)
-                
+                var card = document.createElement('div')
+                card.classList.add('card')
+                card.appendChild(iconImg)
+                card.appendChild(dateEl)
+                card.appendChild(tempEl)
+                forecastContainer.appendChild(card)
             }
-            console.log(weatherData)
-            var dateAndTime = weatherData.list[0].dt_txt.split(' ')[0]
 
+            // Local Storage
+            localStorage.setItem('cityKey', city)
+            var key = localStorage.getItem('cityKey')
+            var cityBtn = document.createElement('button')
+            cityBtn.innerText = key
+            document.body.appendChild(cityBtn)
 
         })
 
-
-
 }
+
 
 // click listener for search button
 searchBtn.addEventListener('click', function (event) {
@@ -70,5 +82,4 @@ citySearched.addEventListener("keypress", function (event) {
         searchBtn.click();
     }
 });
-
 
