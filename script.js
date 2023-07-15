@@ -25,14 +25,14 @@ function getForecastByFetch(cityName) {
             // Name of City
             var city = weatherData.city.name
             var cityEl = document.createElement('h3')
-            cityEl.innerText = city
-            document.body.appendChild(cityEl)
+            cityEl.innerText = 'Current weather for: ' + city
+            searchCard.appendChild(cityEl)
 
             // Array to loop though API and give user elements at 12pm each day
             var listArray = weatherData.list
             for (var i = 4; i < listArray.length; i += 8) {
+                
                 // Temperature
-
                 var temp = listArray[i].main.temp
                 var tempEl = document.createElement('li')
                 tempEl.innerText = temp
@@ -56,11 +56,9 @@ function getForecastByFetch(cityName) {
             }
 
             // Local Storage
-            localStorage.setItem('cityKey', city)
-            var key = localStorage.getItem('cityKey')
-            var cityBtn = document.createElement('button')
-            cityBtn.innerText = key
-            document.body.appendChild(cityBtn)
+            
+
+
 
         })
 
