@@ -2,6 +2,9 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+body {
+    background-color: aliceblue;
+}
 .header_style {
     text-align: center;
     color: white;
@@ -37,7 +40,7 @@ ul {
 }
 
 .skydescription {
-    margin: 0;
+    margin-top: 5px;
 }
 
 li {
@@ -47,24 +50,48 @@ li {
 
 .layout {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 6fr;
     padding: 5px;
     
+}
+
+.currentWeatherCard {
+    border: 3px solid black;
+    padding:5px;
+    margin-top: 15px;
+    border-radius: 5px;
 }
 
 #forecastContainer {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    column-gap: 4px;
+    column-gap: 5px;
+    row-gap: 5px;
+    align-items: baseline;
+    align-content: center;
 }
 
-.card {
+.forecastCard {
     padding: 5px;
     border-radius: 18px;
-    background-color: rgba(1, 74, 87, 0.288);
-    box-shadow: 0 0 5px rgba(168, 168, 168, 0.432);
+    background-color: rgba(100, 175, 218, 0.295);
+    box-shadow: 0 0 7px rgba(139, 139, 139, 0.445);
 }
+
+
 
 h3 {
     margin: 6px 0 0 0;
+}
+
+@media screen and (max-width: 881px) {
+    #forecastContainer {
+        font-size: small;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 5px;
+        align-items: baseline;
+        align-content: center;
+    }
+    
 }

@@ -13,7 +13,49 @@ function getCurrentWeatherByFetch(cityName) {
         })
         .then(function (weatherData) {
 
+            console.log(weatherData)
+            // Gets current Weather Icon
+            var iconID = weatherData.weather[0].icon
+            var iconImg = document.createElement('img')
+            iconImg.src = 'https://openweathermap.org/img/wn/' + iconID + '.png'
 
+            // Gets city name
+            var city = weatherData.name
+            var cityEl = document.createElement('h3')
+            cityEl.innerText = 'Current weather for: ' + city
+            searchCard.appendChild(cityEl)
+
+            // Current Sky Conditions
+            var currentSkyCondition = weatherData.weather[0].main
+            var currentSkyConditionEl = document.createElement('p')
+            currentSkyConditionEl.classList.add('skydescription')
+            currentSkyConditionEl.innerText = currentSkyCondition
+
+            // Current Temp
+            var currentTemp = weatherData.main.temp
+            var currentTempEl = document.createElement('li')
+            currentTempEl.innerText = "Temp: " + currentTemp
+
+            // Current Humidity
+            var currentHumidity = weatherData.main.temp
+            var currentHumidityEl = document.createElement('li')
+            currentHumidityEl.innerText = "Humidity: " + currentHumidity
+
+            // Current windspeed
+            var currentWindSpeed = weatherData.wind.speed
+            var currentWindSpeedEl = document.createElement('li')
+            currentWindSpeedEl.innerText = "Wind: " + currentWindSpeed
+
+
+
+            var weatherCard = document.createElement('div')
+            weatherCard.classList.add('currentWeatherCard')
+            weatherCard.appendChild(iconImg)
+            weatherCard.appendChild(currentSkyConditionEl)
+            weatherCard.appendChild(currentTempEl)
+            weatherCard.appendChild(currentHumidityEl)
+            weatherCard.appendChild(currentWindSpeedEl)
+            searchCard.appendChild(weatherCard)
 
         })
 }
@@ -28,11 +70,6 @@ function getForecastByFetch(cityName) {
         })
         .then(function (weatherData) {
 
-            // Name of City
-            var city = weatherData.city.name
-            var cityEl = document.createElement('h3')
-            cityEl.innerText = 'Current weather for: ' + city
-            searchCard.appendChild(cityEl)
 
             // Array to loop though API and give user elements at 12pm each day
             var listArray = weatherData.list
@@ -60,10 +97,9 @@ function getForecastByFetch(cityName) {
                 // Wind Speed
                 var windSpeed = listArray[i].wind.speed
                 var windEl = document.createElement('li')
-                windEl.innerText = "Wind: " + windSpeed
-                console.log(windSpeed)
+                windEl.innerText = "Wind: " + windSpeed + " mph"
 
-                // Sjy Condition
+                // SKy Condition
                 var skyCondition = listArray[i].weather[0].main
                 var skyConditionEl = document.createElement('p')
                 skyConditionEl.classList.add('skydescription')
@@ -71,21 +107,20 @@ function getForecastByFetch(cityName) {
 
 
 
-                var card = document.createElement('div')
-                card.classList.add('card')
-                card.appendChild(iconImg)
-                card.appendChild(skyConditionEl)
-                card.appendChild(dateEl)
-                card.appendChild(tempEl)
-                card.appendChild(humidityEl)
-                card.appendChild(windEl)
-                forecastContainer.appendChild(card)
+                var forecastCard = document.createElement('div')
+                forecastCard.classList.add('forecastCard')
+                forecastCard.appendChild(iconImg)
+                forecastCard.appendChild(skyConditionEl)
+                forecastCard.appendChild(dateEl)
+                forecastCard.appendChild(tempEl)
+                forecastCard.appendChild(humidityEl)
+                forecastCard.appendChild(windEl)
+                forecastContainer.appendChild(forecastCard)
 
                 
             }
 
             // Local Storage
-            console.log(weatherData)
 
 
         })
