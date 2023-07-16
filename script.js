@@ -46,8 +46,7 @@ function getCurrentWeatherByFetch(cityName) {
             var currentWindSpeedEl = document.createElement('li')
             currentWindSpeedEl.innerText = "Wind: " + currentWindSpeed
 
-
-
+            // DOM appends
             var weatherCard = document.createElement('div')
             weatherCard.classList.add('currentWeatherCard')
             weatherCard.appendChild(iconImg)
@@ -99,14 +98,14 @@ function getForecastByFetch(cityName) {
                 var windEl = document.createElement('li')
                 windEl.innerText = "Wind: " + windSpeed + " mph"
 
-                // SKy Condition
+                // Sky Condition
                 var skyCondition = listArray[i].weather[0].main
                 var skyConditionEl = document.createElement('p')
                 skyConditionEl.classList.add('skydescription')
                 skyConditionEl.innerText = skyCondition
 
 
-
+                // DOM appends
                 var forecastCard = document.createElement('div')
                 forecastCard.classList.add('forecastCard')
                 forecastCard.appendChild(iconImg)
@@ -120,27 +119,41 @@ function getForecastByFetch(cityName) {
                 
             }
 
-            // Local Storage
-
-
         })
+        
+    }
+    
+    
+    // click listener for search button
+    searchBtn.addEventListener('click', function (event) {
+        var searched = citySearched.value
+        // event.preventDefault()
+        getForecastByFetch(searched)
+        getCurrentWeatherByFetch(searched)
 
-}
 
+        
+        
+        // Local Storage NEEDS WORK!
+        // localStorage.setItem('City', searched.toUpperCase())
+        // var getItem = localStorage.getItem('City')
+        // var getItemBtn = document.createElement('button')
+        // getItemBtn.innerText = getItem
+    
+        // document.body.appendChild(getItemBtn)
+        // console.log(getItem)
+        // getItemBtn.addEventListener('click', function() {
+            
 
-// click listener for search button
-searchBtn.addEventListener('click', function (event) {
-    var searched = citySearched.value
-    event.preventDefault()
-    getForecastByFetch(searched)
-    getCurrentWeatherByFetch(searched)
-
-});
+        // });
+    });
+    
+    
 
 // allows user to hit the'Enter' key on the keyboard
 citySearched.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        event.preventDefault();
+        // event.preventDefault();
         searchBtn.click();
     }
 });

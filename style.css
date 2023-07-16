@@ -60,6 +60,7 @@ li {
     padding:5px;
     margin-top: 15px;
     border-radius: 5px;
+    background-color: rgba(0, 85, 182, 0.493);
 }
 
 #forecastContainer {
