@@ -2,6 +2,8 @@ var citySearched = document.getElementById('citySearched')
 var searchBtn = document.querySelector('button')
 var apiKey = '59a3c0db12e1f890c3e94259c9168e7f'
 var forecastContainer = document.getElementById('forecastContainer')
+var searched = citySearched.value
+
 
 
 
@@ -18,7 +20,7 @@ function getCurrentWeatherByFetch(cityName) {
             var iconID = weatherData.weather[0].icon
             var iconImg = document.createElement('img')
             iconImg.src = 'https://openweathermap.org/img/wn/' + iconID + '.png'
-
+            
             // Gets city name
             var city = weatherData.name
             var cityEl = document.createElement('h3')
@@ -30,22 +32,22 @@ function getCurrentWeatherByFetch(cityName) {
             var currentSkyConditionEl = document.createElement('p')
             currentSkyConditionEl.classList.add('skydescription')
             currentSkyConditionEl.innerText = currentSkyCondition
-
+            
             // Current Temp
             var currentTemp = weatherData.main.temp
             var currentTempEl = document.createElement('li')
             currentTempEl.innerText = "Temp: " + currentTemp
-
+            
             // Current Humidity
             var currentHumidity = weatherData.main.temp
             var currentHumidityEl = document.createElement('li')
             currentHumidityEl.innerText = "Humidity: " + currentHumidity
-
+            
             // Current windspeed
             var currentWindSpeed = weatherData.wind.speed
             var currentWindSpeedEl = document.createElement('li')
             currentWindSpeedEl.innerText = "Wind: " + currentWindSpeed
-
+            
             // DOM appends
             var weatherCard = document.createElement('div')
             weatherCard.classList.add('currentWeatherCard')
@@ -55,6 +57,7 @@ function getCurrentWeatherByFetch(cityName) {
             weatherCard.appendChild(currentHumidityEl)
             weatherCard.appendChild(currentWindSpeedEl)
             searchCard.appendChild(weatherCard)
+
 
         })
 }
@@ -116,45 +119,28 @@ function getForecastByFetch(cityName) {
                 forecastCard.appendChild(windEl)
                 forecastContainer.appendChild(forecastCard)
 
-                
             }
-
         })
-        
-    }
-    
-    
-    // click listener for search button
-    searchBtn.addEventListener('click', function (event) {
-        var searched = citySearched.value
-        // event.preventDefault()
-        getForecastByFetch(searched)
-        getCurrentWeatherByFetch(searched)
+}
 
 
-        
-        
-        // Local Storage NEEDS WORK!
-        // localStorage.setItem('City', searched.toUpperCase())
-        // var getItem = localStorage.getItem('City')
-        // var getItemBtn = document.createElement('button')
-        // getItemBtn.innerText = getItem
-    
-        // document.body.appendChild(getItemBtn)
-        // console.log(getItem)
-        // getItemBtn.addEventListener('click', function() {
-            
 
-        // });
-    });
-    
-    
+
+
+// click listener for search button
+searchBtn.addEventListener('click', function (event) {
+    var searched = citySearched.value
+    event.preventDefault()
+    getForecastByFetch(searched)
+    getCurrentWeatherByFetch(searched)
+
+});
+
 
 // allows user to hit the'Enter' key on the keyboard
 citySearched.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        // event.preventDefault();
+        event.preventDefault();
         searchBtn.click();
     }
 });
-

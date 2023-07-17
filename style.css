@@ -66,8 +66,8 @@ li {
 #forecastContainer {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    column-gap: 5px;
-    row-gap: 5px;
+    column-gap: 10px;
+    row-gap: 10px;
     align-items: baseline;
     align-content: center;
 }
@@ -94,5 +94,18 @@ h3 {
         align-items: baseline;
         align-content: center;
     }
+    
+}
+
+@media screen and (max-width: 571px) {
+    .layout {
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    align-items: stretch;
+}
+#forecastContainer {
+    margin-top: 15px;
+}
     
 }
