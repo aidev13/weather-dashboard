@@ -142,6 +142,19 @@ searchBtn.addEventListener('click', function (event) {
     searchDataBtn.innerText = searched
     document.body.appendChild(searchDataBtn)
 
+    // Local Storage NEEDS WORK!
+        // localStorage.setItem('City', searched.toUpperCase())
+        // var getItem = localStorage.getItem('City')
+        // var getItemBtn = document.createElement('button')
+        // getItemBtn.innerText = getItem
+    
+        // document.body.appendChild(getItemBtn)
+        // console.log(getItem)
+        // getItemBtn.addEventListener('click', function() {
+            
+
+        // });
+
 });
 
 
