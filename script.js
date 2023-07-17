@@ -15,6 +15,9 @@ function getCurrentWeatherByFetch(cityName) {
         })
         .then(function (weatherData) {
 
+
+            searchCard.innerText = ''
+
             console.log(weatherData)
             // Gets current Weather Icon
             var iconID = weatherData.weather[0].icon
@@ -72,6 +75,8 @@ function getForecastByFetch(cityName) {
         })
         .then(function (weatherData) {
 
+            // clear forecast container
+            forecastContainer.innerText = ''
 
             // Array to loop though API and give user elements at 12pm each day
             var listArray = weatherData.list
@@ -125,14 +130,17 @@ function getForecastByFetch(cityName) {
 
 
 
-
-
 // click listener for search button
 searchBtn.addEventListener('click', function (event) {
     var searched = citySearched.value
     event.preventDefault()
+
     getForecastByFetch(searched)
     getCurrentWeatherByFetch(searched)
+    
+    var searchDataBtn = document.createElement('button')
+    searchDataBtn.innerText = searched
+    document.body.appendChild(searchDataBtn)
 
 });
 
