@@ -132,28 +132,28 @@ function getForecastByFetch(cityName) {
 
 // click listener for search button
 searchBtn.addEventListener('click', function (event) {
+    
     var searched = citySearched.value
     event.preventDefault()
 
     getForecastByFetch(searched)
     getCurrentWeatherByFetch(searched)
     
-    var searchDataBtn = document.createElement('button')
-    searchDataBtn.innerText = searched
-    document.body.appendChild(searchDataBtn)
+    // var searchDataBtn = document.createElement('button')
+    // searchDataBtn.innerText = searched
+    // document.body.appendChild(searchDataBtn)
+    localStorage.setItem('City', [searched])
+    var getItem = localStorage.getItem('City')
+    var getItemBtn = document.createElement('button')
+    getItemBtn.innerText = getItem
 
-    // Local Storage NEEDS WORK!
-        // localStorage.setItem('City', searched.toUpperCase())
-        // var getItem = localStorage.getItem('City')
-        // var getItemBtn = document.createElement('button')
-        // getItemBtn.innerText = getItem
-    
-        // document.body.appendChild(getItemBtn)
-        // console.log(getItem)
-        // getItemBtn.addEventListener('click', function() {
-            
+    document.body.appendChild(getItemBtn)
+    console.log(getItem)
+    getItemBtn.addEventListener('click', function() {
+        getCurrentWeatherByFetch(getItem)
+        getForecastByFetch(getItem)
 
-        // });
+    });
 
 });
 

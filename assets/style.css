@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: aliceblue;
+    background-color: rgb(221, 231, 240);
 }
 .header_style {
     text-align: center;
@@ -56,11 +56,11 @@ li {
 }
 
 .currentWeatherCard {
-    border: 3px solid black;
-    padding:5px;
+    padding:8px;
     margin-top: 15px;
-    border-radius: 5px;
-    background-color: rgba(0, 85, 182, 0.493);
+    border-radius: 28px 0 28px 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 7px rgba(139, 139, 139, 0.445);
 }
 
 #forecastContainer {
@@ -78,7 +78,6 @@ li {
     background-color: rgba(100, 175, 218, 0.295);
     box-shadow: 0 0 7px rgba(139, 139, 139, 0.445);
 }
-
 
 
 h3 {
