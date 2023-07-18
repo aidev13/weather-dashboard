@@ -15,7 +15,6 @@ function getCurrentWeatherByFetch(cityName) {
         })
         .then(function (weatherData) {
 
-
             searchCard.innerText = ''
 
             console.log(weatherData)
@@ -142,7 +141,7 @@ searchBtn.addEventListener('click', function (event) {
     // var searchDataBtn = document.createElement('button')
     // searchDataBtn.innerText = searched
     // document.body.appendChild(searchDataBtn)
-    localStorage.setItem('City', [searched])
+    localStorage.setItem('City', searched)
     var getItem = localStorage.getItem('City')
     var getItemBtn = document.createElement('button')
     getItemBtn.innerText = getItem
