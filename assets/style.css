@@ -89,6 +89,20 @@ h3 {
     margin: 6px 0 0 0;
 }
 
+.historyBtn {
+    border: 1px black solid;
+    margin: 5PX;
+    padding: 3px 6px;
+    background-color: transparent;
+    border-radius: 6px;
+}
+
+.historyBtn:hover {
+    border-color: rgb(0, 102, 255);
+    color: rgb(0, 102, 255);
+    background-color: rgba(92, 92, 92, 0.079);
+}
+
 @media screen and (max-width: 881px) {
     #forecastContainer {
         font-size: small;

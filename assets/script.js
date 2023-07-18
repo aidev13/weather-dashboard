@@ -144,6 +144,7 @@ searchBtn.addEventListener('click', function (event) {
     localStorage.setItem('City', searched)
     var getItem = localStorage.getItem('City')
     var getItemBtn = document.createElement('button')
+    getItemBtn.classList.add('historyBtn')
     getItemBtn.innerText = getItem
 
     document.body.appendChild(getItemBtn)
