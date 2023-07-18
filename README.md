@@ -101,6 +101,16 @@ You are required to submit BOTH of the following for review:
 
 * The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
 
+- - - 
+## Notes for Graders
+
+* Repo Account: https://github.com/aidev13/
+
+* Deployed Repo: https://aidev13.github.io/weather-dashboard/
+
+Screenshot: ![Screenshot of webpage](./images/Screenshot%202023-07-17%20220622.png)
+
+
 - - -
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
 
