@@ -139,7 +139,9 @@ function historyBtn(searched) {
     area.appendChild(button)
     //button event
     button.addEventListener('click',function(event) {
-        console.log(event.target.innerText)
+        var cityName = event.target.innerText
+        getCurrentWeatherByFetch(cityName)
+        getForecastByFetch(cityName)
     })
 
 
