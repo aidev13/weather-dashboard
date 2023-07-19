@@ -128,6 +128,25 @@ function getForecastByFetch(cityName) {
 }
 
 
+function historyBtn(searched) {
+    console.log(searched)
+    //button creation
+    var button = document.createElement('button')
+    button.classList.add("historyBtnStyle")
+    button.innerText = searched
+    //appending button
+    var area = document.getElementById('savedSearchedBtnArea')
+    area.appendChild(button)
+    //button event
+    button.addEventListener('click',function(event) {
+        console.log(event.target.innerText)
+    })
+
+
+}
+
+
+
 
 // click listener for search button
 searchBtn.addEventListener('click', function (event) {
@@ -135,25 +154,26 @@ searchBtn.addEventListener('click', function (event) {
     var searched = citySearched.value
     event.preventDefault()
 
+    historyBtn(searched)
     getForecastByFetch(searched)
     getCurrentWeatherByFetch(searched)
     
     // var searchDataBtn = document.createElement('button')
     // searchDataBtn.innerText = searched
     // document.body.appendChild(searchDataBtn)
-    localStorage.setItem('City', searched)
-    var getItem = localStorage.getItem('City')
-    var getItemBtn = document.createElement('button')
-    getItemBtn.classList.add('historyBtn')
-    getItemBtn.innerText = getItem
+    // localStorage.setItem('City', searched)
+    // var getItem = localStorage.getItem('City')
+    // var getItemBtn = document.createElement('button')
+    // getItemBtn.classList.add('historyBtn')
+    // getItemBtn.innerText = getItem
 
-    document.body.appendChild(getItemBtn)
-    console.log(getItem)
-    getItemBtn.addEventListener('click', function() {
-        getCurrentWeatherByFetch(getItem)
-        getForecastByFetch(getItem)
+    // document.body.appendChild(getItemBtn)
+    // console.log(getItem)
+    // getItemBtn.addEventListener('click', function() {
+    //     getCurrentWeatherByFetch(getItem)
+    //     getForecastByFetch(getItem)
 
-    });
+    // });
 
 });
 

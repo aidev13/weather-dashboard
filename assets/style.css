@@ -103,6 +103,24 @@ h3 {
     background-color: rgba(92, 92, 92, 0.079);
 }
 
+.historyBtnStyle {
+    display: flex;
+    min-width: 100px;
+    justify-content: center;
+    margin: 8px 10px;
+    background-color: aliceblue;
+    border-radius: 16px;
+    padding: 5px 10px;
+    border: 1px solid rgba(51, 146, 175, 0.568)
+}
+
+.historyBtnStyle:hover {
+    box-shadow: 0 0 5px 1px rgb(132, 214, 241);
+    cursor: pointer;
+}
+
+
+
 @media screen and (max-width: 881px) {
     #forecastContainer {
         font-size: small;
