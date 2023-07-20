@@ -76,7 +76,7 @@ function getForecastByFetch(cityName) {
             // clear forecast container
             forecastContainer.innerText = ''
 
-            // Array to loop though API and give user elements at 12pm each day
+            // Array to loop though API for a given time of the day
             var listArray = weatherData.list
             for (var i = 0; i < listArray.length; i += 8) {
                 // Icons
