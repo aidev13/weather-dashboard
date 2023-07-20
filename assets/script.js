@@ -17,12 +17,11 @@ function getCurrentWeatherByFetch(cityName) {
 
             searchCard.innerText = ''
 
-            console.log(weatherData)
             // Gets current Weather Icon
             var iconID = weatherData.weather[0].icon
             var iconImg = document.createElement('img')
             iconImg.src = 'https://openweathermap.org/img/wn/' + iconID + '.png'
-            
+
             // Gets city name
             var city = weatherData.name
             var cityEl = document.createElement('h3')
@@ -34,22 +33,22 @@ function getCurrentWeatherByFetch(cityName) {
             var currentSkyConditionEl = document.createElement('p')
             currentSkyConditionEl.classList.add('skydescription')
             currentSkyConditionEl.innerText = currentSkyCondition
-            
+
             // Current Temp
             var currentTemp = weatherData.main.temp
             var currentTempEl = document.createElement('li')
             currentTempEl.innerText = "Temp: " + currentTemp
-            
+
             // Current Humidity
             var currentHumidity = weatherData.main.temp
             var currentHumidityEl = document.createElement('li')
             currentHumidityEl.innerText = "Humidity: " + currentHumidity
-            
+
             // Current windspeed
             var currentWindSpeed = weatherData.wind.speed
             var currentWindSpeedEl = document.createElement('li')
             currentWindSpeedEl.innerText = "Wind: " + currentWindSpeed
-            
+
             // DOM appends
             var weatherCard = document.createElement('div')
             weatherCard.classList.add('currentWeatherCard')
@@ -128,7 +127,16 @@ function getForecastByFetch(cityName) {
 }
 
 
-function historyBtn(searched) {
+// Function for Local Storage
+function addSearch(searchedCityName) {
+    var storedCities = JSON.parse(localStorage.getItem('history')) || []
+    storedCities.push(searchedCityName)
+    localStorage.setItem('history', JSON.stringify(storedCities))
+}
+
+
+// Function for button/s for history search/es
+function savedHistoryBtn(searched) {
     console.log(searched)
     //button creation
     var button = document.createElement('button')
@@ -138,28 +146,27 @@ function historyBtn(searched) {
     var area = document.getElementById('savedSearchedBtnArea')
     area.appendChild(button)
     //button event
-    button.addEventListener('click',function(event) {
+    button.addEventListener('click', function (event) {
         var cityName = event.target.innerText
         getCurrentWeatherByFetch(cityName)
         getForecastByFetch(cityName)
+        addSearch(cityName)
     })
-
 
 }
 
 
-
-
 // click listener for search button
 searchBtn.addEventListener('click', function (event) {
-    
+
     var searched = citySearched.value
     event.preventDefault()
 
-    historyBtn(searched)
+    savedHistoryBtn(searched)
     getForecastByFetch(searched)
     getCurrentWeatherByFetch(searched)
-    
+    addSearch(searched)
+
     // var searchDataBtn = document.createElement('button')
     // searchDataBtn.innerText = searched
     // document.body.appendChild(searchDataBtn)
