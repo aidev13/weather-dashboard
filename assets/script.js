@@ -6,7 +6,6 @@ var searched = citySearched.value
 
 
 
-
 // Current Weather Function
 function getCurrentWeatherByFetch(cityName) {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey)
@@ -135,6 +134,31 @@ function addSearch(searchedCityName) {
 }
 
 
+function displayHistory() {
+    // grab searches array from local storage
+    var searchedCities = JSON.parse(localStorage.getItem('history'))
+    if (searchedCities) {
+
+        var trackedCities = []
+        console.log(searchedCities)
+        // loop over strings in array
+        for (var i = 0; i < 3; i++) {
+            var cityName = searchedCities[i]
+
+            if (cityName && !trackedCities.includes(cityName)) {
+                savedHistoryBtn(cityName)
+                trackedCities.push(cityName)
+            }
+        }
+    }
+
+
+
+}
+
+displayHistory()
+
+
 // Function for button/s for history search/es
 function savedHistoryBtn(searched) {
     console.log(searched)
@@ -166,23 +190,6 @@ searchBtn.addEventListener('click', function (event) {
     getForecastByFetch(searched)
     getCurrentWeatherByFetch(searched)
     addSearch(searched)
-
-    // var searchDataBtn = document.createElement('button')
-    // searchDataBtn.innerText = searched
-    // document.body.appendChild(searchDataBtn)
-    // localStorage.setItem('City', searched)
-    // var getItem = localStorage.getItem('City')
-    // var getItemBtn = document.createElement('button')
-    // getItemBtn.classList.add('historyBtn')
-    // getItemBtn.innerText = getItem
-
-    // document.body.appendChild(getItemBtn)
-    // console.log(getItem)
-    // getItemBtn.addEventListener('click', function() {
-    //     getCurrentWeatherByFetch(getItem)
-    //     getForecastByFetch(getItem)
-
-    // });
 
 });
 
